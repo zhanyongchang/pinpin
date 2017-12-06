@@ -1,0 +1,48 @@
+{template "content","header"}
+<?php 
+    $temp="0";
+    switch($catid) {
+        case "2":
+            $temp="0";
+            break;
+        case "5":
+            $temp="0";
+            break;
+    }
+?>
+    <input type="hidden" id="temp" value="{$temp}" />
+    <div class="main">
+        <div class="indexCenter">
+            <div class="indexLeft">
+                <input type="hidden" id="left_id" value="0" />
+                {template "content","left2"}
+            </div>
+            <div class="indexRight">
+                <div class="right_1"></div>
+                <div class="neiye_line2Video">
+                    <div class="right_2">
+                        <div class="right_3">
+                            当前位置：<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)}
+                        </div>
+                    </div>
+                    <div class="news_con">
+{pc:content action="lists" catid="$catid" num="10" order="listorder DESC,id DESC" moreinfo="1" page="$page"} 
+{loop $data $r}
+                        <dl>
+                            <dt><a href='{$r[url]}' target="_blank" title='{$r[title]}' class="dt_1">{str_cut($r[title],90,'...')}</a><span class="dt_2">[ {date('Y-m-d H:i:s',$r[inputtime])} ]</span></dt>
+                            <dd>{str_cut(safe_replace_char(strip_tags($r[content])),260,'...')}</dd>
+                        </dl>           
+{/loop}     
+{/pc}
+                    </div>
+                    <div class="pagesDiv" id="pages">
+                        <div class="pagination">
+                            {$pages}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{template "content","footer"}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>JS站群跨域</title>
+</head>
+<body onLoad="a()">
+<script type="text/javascript">
+function a(){
+	var q = location.search.replace('?','').split('|');
+	if (top.document.getElementById('comment_iframe')) top.document.getElementById('comment_iframe').height=(q[0] ? q[0] : '0');
+		if (top.document.getElementById('comment')) top.document.getElementById('comment').innerHTML=(q[1] ? q[1] : '0');
+}
+</script>
+</body>
+</html>

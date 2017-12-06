@@ -1,0 +1,38 @@
+﻿<?php
+    $weixin="/statics/images/service.jpg";
+    if($siteinfo['pc_weixinqrcode']!="") {
+        $weixin=$siteinfo['pc_weixinqrcode'];
+    }
+    $qqlist = explode(';',$siteinfo['pc_qqlist']);
+?>
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}qqonline.css" />
+<script type="text/javascript" src="{JS_PATH}qq3.js"></script>
+<div class="main-im">
+    <div id="open_im" class="open-im png">&nbsp;</div>  
+    <div class="im_main" id="im_main">
+        <div id="close_im" class="close-im png"><a href="javascript:;" title="点击关闭">&nbsp;</a></div>
+        <div class="im-content">
+{loop $qqlist $_qq}
+{if !empty($_qq)}
+            <a class='black' href="tencent://message/?uin={$_qq}&amp;Site=在线客服&amp;V=1&amp;Menu=yes" target='_blank'><img src="http://wpa.qq.com/pa?p=1:{$_qq}:8" alt='在线客服' border='0' /></a>     
+{/if}
+{/loop}
+        </div>
+        <div class="im-tel">
+            <div>客户服务热线</div>
+            <div class="tel-num">{$siteinfo['pc_phone']}<br /><span>{$siteinfo['pc_mobile']}</span></div>
+        </div>
+        <div class="im-footer">
+            <div class="weixing-container png">
+                <div class="weixing-show png">
+                    <div class="weixing-txt">微信扫一扫<br />体验功能</div>
+                    <img class="weixing-ma png" src="{$weixin}" />
+                    <div class="weixing-sanjiao png"></div>
+                    <div class="weixing-sanjiao-big png"></div>
+                </div>
+            </div>
+            <div class="go-top png"><a href="javascript:;" title="返回顶部"></a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>﻿

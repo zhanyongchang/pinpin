@@ -1,0 +1,80 @@
+{template "member","header"}
+
+<div class="main">
+	<div id="memberArea">
+		<div class="col-left col-1 left-memu">
+			<h5 class="title">账号管理</h5>
+			<ul>
+				<li><a href="index.php?m=member&c=index&a=account_manage_info&t=1"><img src="/statics/images/icon/user_edit.png" width="16" /> 修改个人信息</a></li>
+				<li><a href="index.php?m=member&amp;c=index&amp;a=account_manage_avatar&amp;t=1"><img src="/statics/images/icon/vcard.png" width="16"> 修改头像</a></li>
+
+				<li><a href="index.php?m=member&amp;c=index&amp;a=account_manage_password&amp;t=1"><img src="/statics/images/icon/icon_key.gif" width="16" height="16"> 修改密码</a></li>
+
+				<li><a href="index.php?m=member&amp;c=index&amp;a=account_manage_email&amp;t=1"><img src="/statics/images/icon/vcard.png"> 修改邮箱/手机号</a></li>
+			</ul>
+			<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+		</div>
+		<div class="col-auto">
+			<div class="col-1 ">
+				<h5 class="title">个人信息：</h5>
+				<div class="content">
+					{pc:get sql="select * from jzk_member where userid='$_userid'"}
+					<div class="col-1 member-info">
+						<div class="content" style="position: relative;">
+							<div class="himg" style="position: absolute;top: 10px;left: 10px;">
+								<a title="修改头像" href="index.php?m=member&amp;c=index&amp;a=account_manage_avatar&amp;t=1"><img src="http://www.xiaojindou123.com/phpsso_server/statics/images/member/nophoto.gif" width="60" height="60" onerror="this.src='http://www.xiaojindou123.com/phpsso_server/statics/images/member/nophoto.gif'"></a>
+							</div>
+							<div class="col-auto" style="width: 90%;float: right;">
+								<h5><img src="/statics/images/icon/vip-expired.gif" title="已过期，过期时间：1">
+								<font color="#000000">{$_username}</font>（{$data[0][email]}）</h5>
+								<p class="blue">
+									会员积分：<font style="color:#F00; font-size:12px;font-family:Georgia,Arial; font-weight:700">{$data[0][point]}</font> 积分	
+								</p>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+					<div class="bk10"></div>	
+					<div class="col-1 ">
+						<h5 class="title">详细信息</h5>
+						<div class="content">
+							<table width="100%" cellspacing="0" class="table_form">
+								<tbody>
+								<tr>
+									<th width="120">用户名：</th>        
+									<td>{$_username}</td>
+								</tr>
+								<tr>
+									<th width="120">注册时间：</th>        
+									<td>{date("Y-m-d H:i:s",$data[0][regdate])}</td>
+								</tr>
+								<tr>
+									<th width="120">最后登录：</th>        
+									<td>{date("Y-m-d H:i:s",$data[0][lastdate])}</td>
+								</tr>
+								<tr>
+									<th width="120">注册ip：</th>        
+									<td>{$data[0][regip]}</td>
+								</tr>
+								<tr>
+									<th width="120">上次登录ip：</th>        
+									<td>{$data[0][lastip]}</td>
+								</tr>
+								<tr>
+									<th width="120">手机号码：</th>        
+									<td style="color:#ff6600;"><strong>{$data[0][mobile]}</strong> 
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="更换手机" class="button" onclick="redirect('?m=member&c=index&a=account_change_mobile&t=1')">
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div> 
+					{/pc}
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+{template "member","footer"}

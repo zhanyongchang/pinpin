@@ -1,0 +1,29 @@
+﻿<?php
+    $weixin="/statics/images/service.jpg";
+    if($siteinfo['pc_weixinqrcode']!="") {
+        $weixin=$siteinfo['pc_weixinqrcode'];
+    }
+    $qqlist = explode(';',$siteinfo['pc_qqlist']);
+?>
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}qqonline.css" />
+<script type="text/javascript" src="{JS_PATH}qq4.js"></script>
+<div class="keifu">
+    <div class="keifu_tab">
+        <div class="icon_keifu"></div>
+        <div class="keifu_box">
+            <div class="keifu_head"><a href="javascript:;" class="keifu_close"></a></div>
+            <div class="keifu_con">
+                <ul>
+{loop $qqlist $_qq}
+{if !empty($_qq)}
+                    <li><a class='black' href="tencent://message/?uin={$_qq}&amp;Site=在线客服&amp;V=1&amp;Menu=yes" target='_blank'><img src="http://wpa.qq.com/pa?p=1:{$_qq}:8" alt='在线客服' border='0' /></a></li>         
+{/if}    
+{/loop}
+                </ul>
+                <div class="clear"></div>
+                <div class="weixin"><img src="{$weixin}" alt='在线客服' /></div>
+            </div>
+            <div class="keifu_bot"></div>
+        </div>
+    </div>
+</div>

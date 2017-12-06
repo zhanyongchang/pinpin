@@ -1,0 +1,45 @@
+﻿<?php
+    $weixin="/statics/images/service.jpg";
+    if($siteinfo['pc_weixinqrcode']!="") {
+        $weixin=$siteinfo['pc_weixinqrcode'];
+    }
+    $qqlist = explode(';',$siteinfo['pc_qqlist']);
+?>
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}qqonline.css" />
+<div id="leftsead">
+    <ul>
+        <li>
+            <a href="javascript:void(0)" class="youhui">
+                <img src="{IMG_PATH}QQOnline/l02.png" width="47" height="49" class="shows" />
+                <img src="{IMG_PATH}QQOnline/a.png" width="57" height="49" class="hides" />
+                <img src="{$weixin}" width="145" class="erwm" style="display:none;" />
+            </a>
+        </li>	
+        <li>
+            <a href="tencent://message/?uin={$siteinfo['pc_qq']}&amp;Site=在线客服&amp;V=1&amp;Menu=yes" target="_blank">
+            <div class="hides" style="width:161px;display:none;">
+                <div class="hides" id="p1"><img src="{IMG_PATH}QQOnline/ll04.png" /></div>
+                <div class="hides" id="p2">
+                    <span style="color:#FFF;font-size:13px">在线客服</span>
+                </div>
+            </div>
+            <img src="{IMG_PATH}QQOnline/l04.png" width="47" height="49" class="shows" /></a>
+        </li>
+        <li id="tel">
+            <a href="javascript:void(0)">
+                <div class="hides" style="width:161px;display:none;" id="tels">
+                    <div class="hides" id="p4"><img src="{IMG_PATH}QQOnline/ll05.png" /></div>
+                    <div class="hides" id="p3"><span style="color:#FFF;font-size:12px">{$siteinfo['pc_phone']}</span></div>
+                </div>
+                <img src="{IMG_PATH}QQOnline/l05.png" width="47" height="49" class="shows" />
+            </a>
+        </li>
+        <li id="btn">
+            <a id="top_btn">
+                <div class="hides" style="width:161px;display:none"><img src="{IMG_PATH}QQOnline/ll06.png" width="161" height="49" /></div>
+                <img src="{IMG_PATH}QQOnline/l06.png" width="47" height="49" class="shows" />
+            </a>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript" src="{JS_PATH}qq5.js"></script>

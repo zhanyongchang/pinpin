@@ -1,0 +1,54 @@
+{template "content","header"}
+<?php 
+    $temp="0";
+    switch($catid) {
+        case "25":
+            $temp="0";
+            break;
+    }
+?>
+    <input type="hidden" id="temp" value="{$temp}" />
+    <div class="main">
+        <div class="indexCenter">
+            <div class="indexLeft">
+                <input type="hidden" id="left_id" value="0" />
+                {template "content","left2"}
+            </div>
+            <div class="indexRight">
+                <div class="right_1"></div>
+                <div class="neiye_line2Video">
+                    <div class="right_2">
+                        <div class="right_3">
+                            当前位置：<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)}
+                        </div>
+                    </div>
+                    <div class="download_list">
+{pc:content action="lists" catid="$catid" num="10" order="listorder DESC,id DESC" page="$page"}
+{loop $data $r}
+                        <div class="content">
+                            <div class="Dleft">
+                                <div class="Dleft_1">
+                                    <a href="{$r[url]}" title='{$r[title]}' target="_blank"><img src='{getImgPath($r[thumb])}' onload="DrawImage(this,120,90)" alt='{$r[title]}' /></a>
+                                </div>
+                                <div class="Dleft_2">
+                                    <a href="{$r[url]}" title='{$r[title]}' target="_blank">{$r[title]}</a><br />{$r[description]}
+                                </div>
+                            </div>
+                            <div class="Dright">
+                                <a href="{$r[url]}" target="_blank"><img src="{IMG_PATH}downLoad.gif" alt='{$r[title]}' /></a>
+                            </div>
+                        </div>
+{/loop}
+{/pc}
+                    </div>
+                    <div class="pagesDiv" id="pages">
+                        <div class="pagination">
+                            {$pages}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{template "content","footer"}

@@ -1,0 +1,51 @@
+{template "content","header"}
+<?php 
+    $temp="0";
+    switch($catid) {
+        case "3":
+            $temp="0";
+            break;
+    }
+?>
+    <input type="hidden" id="temp" value="{$temp}" />
+    <div class="main">
+        <div class="indexCenter">
+            <div class="indexLeft">
+                <input type="hidden" id="left_id" value="0" />
+                {template "content","left2_pro"}
+            </div>
+            <div class="indexRight">
+                <div class="right_1"></div>
+                <div class="neiye_line2Video">
+                    <div class="right_2">
+                        <div class="right_3">
+                            当前位置：<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)}
+                        </div>
+                    </div>
+                    <div class="proContent">
+                        <ul class="proList">
+{pc:content action="lists" catid="$catid" num="12" order="listorder DESC,id DESC" page="$page"}
+{loop $data $r}
+                            <li>
+                                <div class="div1">
+                                    <a href='{$r[url]}' title='{$r[title]}' target="_blank"><img src='{getImgPath($r[thumb])}' onload="DrawImage(this,160,120)" alt='{$r[title]}' /></a>
+                                </div>
+                                <div class="div2">
+                                    <a href='{$r[url]}' title='{$r[title]}' target="_blank" class="prolist">{str_cut($r[title],30,'...')}</a>
+                                </div>
+			                </li>
+{/loop}
+{/pc}
+                        </ul>
+                    </div>
+                    <div class="pagesDiv" id="pages">
+                        <div class="pagination">
+                            {$pages}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{template "content","footer"}

@@ -1,0 +1,70 @@
+    
+            <div class="left">
+                <div class="left_1">
+                    <strong>产品分类</strong><span><a href="{$CATEGORYS[3][url]}" class="white">更多>></a></span>
+                </div>
+                <div class="left_2">
+                    <div id="masterdiv">
+{pc:content action="category" catid="3" num="20" siteid="$siteid" order="listorder ASC"}
+{loop $data $v}
+                        <div id="div{$v['catid']}" class="menudiv">
+                            <dl id="Usub{$v['catid']}" class="{if $catid==$v[catid] || $CAT[parentid]==$v[catid] || $CATEGORYS[$catid][parentid]==$v[catid]}menutitleSub{else}menutitle{/if}" onclick="SwitchMenu('{$v[catid]}')"><a href="{$v['url']}" title="{$v['catname']}">{$v['catname']}</a></dl>
+                            <ul id="sub{$v['catid']}" class="submenu" style="display:{if $catid==$v[catid] || $CAT[parentid]==$v[catid] || $CATEGORYS[$catid][parentid]==$v[catid]}block{else}none{/if}">
+{pc:content action="category" catid="$v[catid]" num="20" siteid="$siteid" order="listorder ASC"}
+{loop $data $r}
+            <li id="li{$v['catid']}_{$r[catid]}" class="checkstyle"><a href="{$r[url]}" title="{$r['catname']}">{$r['catname']}</a></li>
+{/loop}
+{/pc}
+                            </ul>
+                        </div>
+{/loop}
+{/pc}
+                    </div>
+                </div>
+                <div class="left_1 mt10">
+                    <strong>解决方案</strong><span><a href="{$CATEGORYS[19][url]}" class="white">更多>></a></span>
+                </div>
+                <div class="left_4">
+{pc:content action="lists" catid="19" num="1" order="listorder DESC,id DESC"}
+{loop $data $v}
+                    <dl>
+                        <dt><a href='{$v[url]}' title='{$v[title]}' target="_blank"><img alt='{$v[title]}' src='{getImgPath($v[thumb])}' onload="DrawImage(this,227,60)" /></a></dt>
+                    </dl>
+{/loop}
+{/pc}
+                    <ul>
+{pc:content action="lists" catid="19" num="5" order="listorder DESC,id DESC"}
+{loop $data $v}
+                        <li><a href='{$v[url]}' title='{$v[title]}' target="_blank" class="black">{str_cut($v[title],48,'...')}</a></li>
+{/loop}
+{/pc}
+                    </ul>
+                </div>
+                <div class="left_1 mt10">
+                    <strong>荣誉资质</strong><span><a href="{$CATEGORYS[4][url]}" class="white">更多>></a></span>
+                </div>
+                <div class="left_4">
+                    <div id="tickerContainer">
+                        <dl id="ticker">
+{pc:content action="lists" catid="4" num="4" order="listorder DESC,id DESC"}
+{loop $data $v}
+    <dt class="heading"><a href='{$v[url]}' target="_blank" title='{$v[title]}'><img src='{getImgPath($v[thumb])}' onload="DrawImage(this,220,165)" alt='{$v[title]}' /></a></dt>
+{/loop}
+{/pc}
+                        </dl>
+                    </div>
+                </div>
+                <div class="left_1 mt10">
+                    <strong>联系我们</strong><span><a href="{$CATEGORYS[8][url]}" class="white">更多>></a></span>
+                </div>
+                <div class="left_4">
+                    <div class="divContactUs">
+{pc:get sql="SELECT * FROM jzk_page WHERE catid=12"}
+{loop $data $key $val}
+    {$val[content]}
+{/loop}
+{/pc}
+
+                    </div>
+                </div>
+            </div>

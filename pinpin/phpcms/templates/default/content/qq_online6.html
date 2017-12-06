@@ -1,0 +1,39 @@
+﻿<?php
+    $weixin="/statics/images/service.jpg";
+    if($siteinfo['pc_weixinqrcode']!="") {
+        $weixin=$siteinfo['pc_weixinqrcode'];
+    }
+    $qqlist = explode(';',$siteinfo['pc_qqlist']);
+?>
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}qqonline.css" />
+<div class="Amain-im">
+    <div id="Aopen_im" class="Aopen-im">&nbsp;</div>
+    <div id="Aim_main" class="Aim_main">  
+        <div class="im_top"></div>
+        <div id="Aclose_im" class="Aclose-im"><a href="javascript:void(0);" title="点击关闭">&nbsp;</a></div>
+        <div class="Amain-im2Div">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+{loop $qqlist $_qq}
+{if !empty($_qq)}
+                <tr>
+                    <td align="center"><a class='black' href="tencent://message/?uin={$_qq}&amp;Site=在线客服&amp;V=1&amp;Menu=yes" target='_blank'><img src="http://wpa.qq.com/pa?p=1:{$_qq}:8" alt='在线客服' border='0' /></a></td>
+                </tr>
+{/if}    
+{/loop}
+            </table>
+        </div>
+        <div class="weixin">
+            <img src="{$weixin}" alt='在线客服' />
+        </div>
+        <div class="im-tel6">
+            <div>
+                <span>{$siteinfo['pc_phone']}</span><br /><span>{$siteinfo['pc_mobile']}</span>
+            </div>
+        </div>
+        <div class="im-footer" style="position:relative">    
+            <div class="Ago-top"><a href="javascript:;" title="返回顶部"></a></div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{JS_PATH}qq6.js"></script>

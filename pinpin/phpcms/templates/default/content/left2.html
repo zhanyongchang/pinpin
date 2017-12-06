@@ -1,0 +1,34 @@
+    
+<div class="left">
+    <div class="left_1">
+        <strong>影片推荐</strong><span><a href="{$CATEGORYS[1][url]}" class="white">更多>></a></span>
+    </div>
+    <div class="left_2">
+        <div id="masterdiv">
+            <ul>
+                {pc:content action="position" posid="17" catid="1" order="listorder DESC" num="20"}
+                {loop $data $nn} 
+                <li><a href="{$nn[url]}">{$nn[title]}</a></li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="left">
+    <div class="left_1">
+        <strong>拼片推荐</strong><span><a href="{$CATEGORYS[2][url]}" class="white">更多>></a></span>
+    </div>
+    <div class="left_2">
+        <div id="masterdiv">
+            <ul>
+                {pc:content action="position" posid="16" catid="2" order="listorder DESC" num="20"}
+                {loop $data $nn} 
+                <li><a href="{$nn[url]}">{$nn[title]}</a></li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+    </div>
+</div>

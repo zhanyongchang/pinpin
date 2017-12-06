@@ -1,0 +1,44 @@
+﻿<?php 
+    $weixin="/statics/images/service.jpg";
+    if($siteinfo['pc_weixinqrcode']!="") {
+        $weixin=$siteinfo['pc_weixinqrcode'];
+    }
+    $qqlist = explode(';',$siteinfo['pc_qqlist']);
+?>
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}qqonline.css" />
+<script type="text/javascript" src="{JS_PATH}qq7.js"></script>
+<div class="scrollsidebar" id="scrollsidebar">
+    <div class="side_content">
+        <div class="side_list">
+            <div class="side_title"><a title="隐藏" class="close_btn"><span>关闭</span></a></div>
+            <div class="side_center">  
+                <div class="other">
+                    <p><img src='{$weixin}' alt='在线客服' width="123" style="padding-top:0px;" /></p>
+                </div>          	
+                <div class="custom_service">
+{loop $qqlist $_qq}
+    {if !empty($_qq)}<p><a class='black' href="tencent://message/?uin={$_qq}&amp;Site=在线客服&amp;V=1&amp;Menu=yes" target='_blank'><img src="http://wpa.qq.com/pa?p=1:{$_qq}:8" alt='在线客服' border='0' /></a></p>{/if}    
+{/loop}
+                </div>               
+                <div class="other">
+                    <p>24小时全国服务热线</p>
+                    <strong>{$siteinfo['pc_mobile']}</strong><br /><strong>{$siteinfo['pc_phone']}</strong>
+                </div>
+                <div class="go-top"><a href="javascript:;" title="返回顶部"></a></div>
+            </div>
+        </div>
+    </div>
+    <div class="show_btn"><span>在线客服</span></div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#scrollsidebar").fix({
+            float: 'right',
+            skin: 'green',
+            durationTime: 600
+        });
+        $('.go-top').bind('click', function () {
+            $(window).scrollTop(0);
+        });
+    });
+</script>

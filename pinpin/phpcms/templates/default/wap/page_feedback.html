@@ -1,0 +1,54 @@
+﻿{template "wap","header"}
+    <div class="About"></div>
+    <div class="ContentA3">
+        <div class="ContentA3a"><a href="javascript:window.history.go(-1)"></a></div>
+        <div class="ContentA3b">{$data[title]}</div>
+    </div>
+    <div class="AboutContent">
+        <div class="company">
+            <div align="center">
+                <link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+                <script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script> 
+                <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+                <form action="{APP_PATH}index.php?m=guestbook&c=index&a=register&siteid={$WAP['siteid']}" method="post" name="myform" id="myform">
+                    <table border="0" align="center" cellpadding="0" cellspacing="0" class="submitTable">    
+                        <tr>
+                            <td colspan="2" align="center" bgcolor="#f4f4f4"><span style="color:#FF6600">请在下面填写您的留言。</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">留言主题<br /><input id="x_Title" name="title" type="text" class="in" size="35" maxlength="50" /> <span class="red">*</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">手机号码<br /><input id="x_Mobile" name="mobile" type="text" class="in" size="35" maxlength="11" /> <span class="red">*</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">电子邮件<br /><input id="x_Email" name="email" type="text" class="in" size="35" maxlength="50" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">留言内容<br /><textarea id="x_Content" name="introduce" rows="5" class="in" style="width:92%;height:80px;"></textarea> <span class="red">*</span></td>
+                        </tr>
+                        <tr>
+                            <td align="left" width="50">验证码：</td>
+                            <td align="left" valign="middle"><input type="text" id="code" class="incode" name="code" maxlength="4" size="4" style="height:21px;vertical-align:middle;" /> <?php echo form::checkcode('code_img','4','14',90,22)?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center" style="padding:5px 0;"><input type="submit" id="dosubmit" name="dosubmit" class="button_submit" value=" 提 交 " style="height:45px;" /><input type="hidden" id="typeid" name="typeid" value="53" /></td>
+                        </tr> 
+                    </table>
+                </form>	
+            </div>
+            <script type="text/javascript">
+			<!--
+				$(function(){
+				$.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+				$("#x_Title").formValidator({onshow:"请输入留言主题",onfocus:"请输入留言主题"}).inputValidator({min:1,max:999,onerror:"留言主题不能为空"});
+				$("#x_Mobile").formValidator({onshow:"请输入您的手机号码",onfocus:"请输入您的手机号码"}).inputValidator({min:1,max:999,onerror:"手机号码不能为空"}).regexValidator({regexp: "^(1)[0-9]{10}$", onerror: "手机号码格式不正确"});
+				$("#x_Content").formValidator({onshow:"请输入留言内容",onfocus:"请输入留言内容"}).inputValidator({min:1,max:999,onerror:"留言内容不能为空"});
+				$("#code").formValidator({onshow:"请输入验证码",onfocus:"验证码不能为空",oncorrect:"OK"}).inputValidator({min:1,max:999,onerror:"验证码不能为空"});
+				})
+			//-->
+			</script>
+        </div>
+        <div class="clear"></div>
+    </div>
+{template "wap","footer"}

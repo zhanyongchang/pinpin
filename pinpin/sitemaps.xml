@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+		<url>
+			<loc>http://127.0.0.1:8080</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>daily</changefreq>
+			<priority>1.0</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-24-20-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-4-19-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-32-17-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-32-18-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-31-16-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-31-15-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-31-14-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-30-13-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-30-12-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-30-11-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-30-10-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-5-9-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-26-8-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-26-7-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-27-6-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-27-5-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-28-4-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-27-3-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-27-2-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+		<url>
+			<loc>http://127.0.0.1:8080/html/show-27-1-1.html</loc>
+			<lastmod>2017-10-30</lastmod>
+			<changefreq>weekly</changefreq>
+			<priority>0.7</priority>
+		</url>
+
+	</urlset>
+

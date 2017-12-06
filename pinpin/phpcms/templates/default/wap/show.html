@@ -1,0 +1,25 @@
+{template "wap","header"}
+    <div class="About"><input id="Hidden1" type="hidden" value='{$id}' /></div>
+    <div class="ContentA3">
+        <div class="ContentA3a"><a href="javascript:window.history.go(-1)"></a></div>
+        <div class="ContentA3b">{wap_typename($typeid)}</div>
+    </div>
+    <div class="AboutContent">
+        <div class="content">
+            <h2><p>{$title}</p></h2>
+            <div class="ptimeviews center">发布时间：{date('Y-m-d H:m:s',strtotime($inputtime))}<span>点击率：</span><span id="hits" style="padding-left:0;"></span></div>
+            <div class="view">
+                <div class="detail">
+{$content}
+
+                </div>
+            </div>
+            <p class="hr"></p>
+            <div class="prevpage"><span>上一篇：</span><a href="{show_url($previous_page[catid],$previous_page[id],$typeid)}">{$previous_page[title]}</a></div>
+            <div class="nextpage"><span>下一篇：</span><a href="{show_url($next_page[catid],$next_page[id],$typeid)}">{$next_page[title]}</a></div>
+            <a href="javascript:window.history.go(-1)" title="返回" class="backlist2">返 回</a>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+{template "wap","footer"}

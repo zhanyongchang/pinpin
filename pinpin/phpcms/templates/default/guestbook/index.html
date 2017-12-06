@@ -1,0 +1,90 @@
+{template "content","header"}
+    <link href="{CSS_PATH}reset.css" rel="stylesheet" type="text/css" />
+    <link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script> 
+    <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+    <div class="main">
+        <div class="indexCenter">
+            <div class="col-left2">
+                <div class="crumbs"><a href="{APP_PATH}">网站首页</a><span> &gt; </span><a href="{APP_PATH}index.php?m={ROUTE_M}&siteid={$siteid}">留言板</a><span> &gt; </span>{$type_arr[name]}</div>
+                <div>
+<form action="{APP_PATH}index.php?m=guestbook&c=index&a=register&siteid={$siteid}" method="post" name="myform" id="myform">
+<table cellspacing="1" cellpadding="0" class="table_form">
+<tbody>
+<tr> 
+  <th width="60">留言主题</th>
+  <td width="300"><input type="text" value="" id="title" name="title" class="input-text" maxlength="50" size="30" /></td>
+</tr>
+<tr> 
+  <th>您的姓名</th>
+  <td><input type="text" value="" id="name" name="name" class="input-text" maxlength="20" size="30" /></td>
+</tr>
+<tr> 
+  <th>企业名称</th>
+  <td><input type="text" value="" id="company" name="company" class="input-text" maxlength="50" size="30" /></td>
+</tr>
+<tr> 
+  <th>手机号码</th>
+  <td><input type="text" value="" name="mobile" id="mobile" class="input-text" maxlength="11" size="30" /></td>
+</tr>
+<tr> 
+  <th>电子邮件</th>
+  <td><input type="text" value="" name="email" id="email" class="input-text" maxlength="50" size="30" /></td>
+</tr>
+<tr> 
+  <th>联系地址</th>
+  <td><input type="text" value="" name="address" id="address" class="input-text" maxlength="50" size="50" /></td>
+</tr>
+<tr>
+  <th>留言内容</th>
+  <td><textarea name="introduce" cols="50" rows="5" class="input-text" id="introduce"></textarea></td>
+</tr>
+{if $setting[1]['enablecheckcode']=='1'}
+<tr>
+  <th>验证码</th>
+  <td><input name="code" type="text" id="code" size="5" maxlength="4" class="input-text" /> {form::checkcode('code_img','4','14',110,30)}</td>
+</tr>
+{/if}
+<tr> 
+  <th></th>
+  <td><input type="submit" value=" 提 交 " id="dosubmit" name="dosubmit" class="button"> <input type="reset" value=" 取 消 " name="reset" class="button"><input type="hidden" id="typeid" name="typeid" value="53" /> </td>
+</tr> 
+</tbody>
+</table>
+</form>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript">
+    <!--
+        $(function(){
+        $.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+		$("#title").formValidator({onshow:"请输入留言主题",onfocus:"请输入留言主题"}).inputValidator({min:1,max:999,onerror:"留言主题不能为空"});
+		$("#name").formValidator({onshow:"请输入您的姓名",onfocus:"请输入您的姓名"}).inputValidator({min:1,max:999,onerror:"您的姓名不能为空"});
+		$("#mobile").formValidator({onshow:"请输入您的手机号码",onfocus:"请输入您的手机号码"}).inputValidator({min:1,max:999,onerror:"手机号码不能为空"}).regexValidator({regexp: "^(1)[0-9]{10}$", onerror: "手机号码格式不正确"});
+		$("#introduce").formValidator({onshow:"请输入留言内容",onfocus:"请输入留言内容"}).inputValidator({min:1,max:999,onerror:"留言内容不能为空"});
+        $("#code").formValidator({onshow:"请输入验证码",onfocus:"验证码不能为空"}).inputValidator({min:1,max:999,onerror:"验证码不能为空"}).ajaxValidator({
+            type : "get",
+            url : "",
+            data :"m=pay&c=deposit&a=public_checkcode",
+            datatype : "html",
+            async:'false',
+            success : function(data){	
+                if(data == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            },
+            buttons: $("#dosubmit"),
+            onerror : "验证码错误",
+            onwait : "验证中"
+        });
+        })
+    //-->
+    </script>
+{template "content","footer"}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+    <meta name="keywords" content="{$SEO['keyword']}" />
+    <meta name="description" content="{$SEO['description']}" />
+    <link href="{CSS_PATH}style.css" rel="stylesheet" type="text/css" />
+<?php 
+    $mdetect = "    <script type=\"text/javascript\" src=\"/statics/js/mdetect.js\"></script>\r\n";
+    if ($WAP['status']=='1') {
+        $w_wapurl=strtolower(rtrim(trim($WAP['domain']),'/'));
+        $mdetect=$mdetect."    <script type=\"text/javascript\">";
+        $mdetect=$mdetect."var href = location.href.toLowerCase();";
+        if($w_wapurl=="" || empty($w_wapurl)) {
+            $mdetect=$mdetect."if(href.indexOf('mobile=1') < 0 && MobileEsp.IsMobilePhone) {";
+            $mdetect=$mdetect."location.href='/mindex.html"."';";
+        }
+        else {
+            $mdetect=$mdetect."if (href.indexOf('".$w_wapurl."') > -1 || (href.indexOf('mobile=1') < 0 && MobileEsp.IsMobilePhone)) {";
+            $mdetect=$mdetect."location.href='".$w_wapurl."/mindex.html';";
+        }
+        $mdetect=$mdetect."document.write('');}</script>"."\r\n";
+        echo $mdetect;
+    }
+?>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="{JS_PATH}PIE_IE678.js"></script>
+    <![endif]-->
+    
+    <script type="text/javascript" src="{JS_PATH}jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="{JS_PATH}pic_auto.js"></script>
+    <script type="text/javascript" src="{JS_PATH}js.js"></script>
+
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="{CSS_PATH}pinpin/main.css">
+<!-- <script type="text/javascript" src="{JS_PATH}pinpin/saved_resource.js"></script> -->
+<?php
+header("Content-Type: text/html;charset=utf-8");
+$database = "pinpin";
+$root = "root";
+$password = "root";
+$con = mysqli_connect("127.0.0.1",$root,$password,$database);
+if(mysqli_connect_errno()){
+    echo "连接数据库失败：".mysqli_connect_error();
+    $con=null;
+    exit;
+}
+
+session_start(); 
+if(isset($_COOKIE['userid'])){
+    $userid_ck = $_COOKIE['userid'];
+    $username_ck = $_COOKIE['username'];
+    $password_ck = $_COOKIE['password'];
+    $sql="select * from jzk_member where userid='$userid_ck'";
+    mysqli_query($con, "set names utf8");
+    $result = mysqli_query($con, $sql);
+    $rs=mysqli_fetch_assoc($result);
+    $username_data = $rs['username'];
+    $password_data = $rs['username'];
+    if($username_data == $username_ck && $password_data == $password_ck){
+        $_SESSION['userid'] = $userid_ck;
+        $_SESSION['username'] = $username_ck;
+    }
+}
+
+if(isset($_SESSION['userid'])){
+    $_userid = $_SESSION['userid'];
+    $_username = $_SESSION['username'];
+}
+
+?>
+
+<div class="head">
+    <div class="head-bar">
+        <div class="head-bar-logo">
+            {pc:get sql="select * from jzk_page where catid=4" num="1"}
+            <a href="/" title="{$data[0][title]}">
+                <img src="{$data[0][thumb]}" style="width: 70;height: 70px;">
+            </a>
+            {/pc}
+        </div>
+        <ul class="nav-bar-menu">
+            <li><a class="nav-bar" href="/" title="首页">首页</a></li>
+            {pc:content action="category" catid="0" num="3" order="listorder asc"}
+            {loop $data $a}
+            <li><a href="{$a[url]}" title="{$a[catname]}">{$a[catname]}</a></li>
+            {/loop}
+            {/pc}
+        </ul>
+        <div class="nav-bar-seach">
+            <div class="bar-seach-form">
+                <form method="get" action="" name="bar-seach-form" target="_blank">
+                    <input class="bar-seach-txt" type="text" name="q" placeholder="aaa">
+                    <input class="icon-home i-search bar-seach-btn" type="submit" value="">
+                </form>
+            </div>
+        </div>
+
+        <div class="nav-bar-user">
+            <div class="bar-user-login">
+                <div class="user-login-reg">
+                {pc:get sql="select * from jzk_category where catid=5" num="1"}
+                    <a href="{$data[0][url]}" target="_blank">
+                        <i class="icon-home i-profile"></i><br><span class="user-login-span">登录</span>
+                    </a>
+                {/pc}
+                </div>
+                <div class="user-login-img" style="display: none;">
+                    <img src="{IMG_PATH}pinpin/noavatar_small.gif">
+                </div>
+                <div class="user-login-plane" style="display: none;">
+                    <i class="arrow-up login-plane-position"></i>
+<!--                     <div class="login-plane-winterVip" id="loginPlaneWinterVip" style="display: none;">
+                        <div class="plane-winterVip-infoBox">
+                            <p class="winterVip-infoBox-title"><i class="icon-home i-crown"></i></p>
+                            <p class="winterVip-infoBox-term">会员有效期：<span></span></p>
+                            <p><a href="http://pay.m1905.com/Gateway/month/number/3/" target="_blank"><button type="button" class="login-renewal-btn">续费</button></a></p>
+                        </div>
+                        <span class="loginOutBtn">退出</span>
+                    </div> -->
+                    <div class="login-plane-winterUnvip" id="loginPlaneWinterUnvip">
+                        <div class="plane-winterVip-infoBox">
+                            <a href="/index.php?m=member&c=index&a=init" target="_blank" title="{$_username}"><img src="http://nuc.m1905.com/images/noavatar_middle.gif" alt="{$_username}" width="60" height="60"></a>
+                            <p class="winterVip-infoBox-title">
+                                <a href="/index.php?m=member&c=index&a=init" target="_blank" title="{$_username}">{$_username}</a>
+                                <i class="icon-home i-crownGray"></i>
+                            </p>
+                            <p>立即开通VIP 大片随意看</p>
+                            <p style="width: 70%;margin-left: 30%;">
+                                <a href="http://vip.1905.com/privilege/index" target="_blank">
+                                    <button type="button" class="login-renewal-btn">开通</button>
+                                </a>
+                            </p>
+                        </div>
+                        <span class="loginOutBtn">退出</span>
+                    </div>
+                </div>
+            </div>
+<!--             <div class="bar-user-history">
+                <i class="icon-home i-history"></i><br><span class="user-history-span">观看记录</span>
+
+                <div class="user-history-plane" style="display: none;">
+                    <i class="arrow-up history-plane-position"></i>
+                    <ul class="history-plane-list">
+
+                    </ul>
+                    <div class="history-plane-empty" id="historyPlaneEmpty" style="display: block;">
+                        <i class="icon-home i-history-empty"></i>
+                        <p style="margin: 14px 0;">最近您还没有任何观影记录</p>
+                    </div>
+                </div>
+            </div> -->
+            <div class="bar-user-phone">
+                <a href="/" target="_blank"><i class="icon-home i-phone"></i><br><span class="user-history-span">移动端</span></a>
+                <div class="user-phone-plane" style="display: none;">
+                    <i class="arrow-up phone-plane-position"></i>
+                    {pc:get sql="select * from jzk_page where catid=3" num="1"}
+                    <img src="{$data[0][thumb]}" width="117" height="117" style="margin-top:42px;">
+                    {/pc}
+                    <p style="font-size:17px; color:#000;margin-top: 18px;margin-bottom: 10px;">扫描打开移动端</p>
+                    <p style="font-size:14px; color:#666;padding: 0px;">更多好电影 手机随时拼</p>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+$(".bar-user-phone").mouseover(function(){
+    $(".user-phone-plane").css("display","block");
+});
+$(".bar-user-phone").mouseout(function(){
+    $(".user-phone-plane").css("display","none");
+});
+</script>
+<script type="text/javascript">
+$(".loginOutBtn").click(function(){
+    $.ajax({
+        type: "POST",  
+        url: "/php/session_des.php", 
+        data:{},
+        // dataType: "json",
+        success: function(data) {
+            console.log(data)
+            window.location.href="/";
+        },
+    });
+});
+</script>
+<script type="text/javascript">
+{if $_userid==""}
+var userid = 0;
+{else}
+var userid = {$_userid};
+{/if}
+if(userid != 0){
+    $(".user-login-reg").css("display","none");
+    $(".bar-user-history").css("display","block");
+    $(".user-login-img").css("display","block");
+
+    $(".bar-user-history").mouseover(function(){
+        $(".user-history-plane").css("display","block");
+    });
+    $(".bar-user-history").mouseout(function(){
+        $(".user-history-plane").css("display","none");
+    });
+    $(".bar-user-login").mouseover(function(){
+        $(".user-login-plane").css("display","block");
+    });
+    $(".bar-user-login").mouseout(function(){
+        $(".user-login-plane").css("display","none");
+    });
+}else{
+    $(".user-login-reg").css("display","block");
+    $(".bar-user-history").css("display","none");
+    $(".user-login-img").css("display","none");
+}
+</script>
+

@@ -1,0 +1,28 @@
+
+    <div class="clear"></div>
+    <div class="Footder">
+        <div class="FootderA">
+            <div class="FootderAContent">
+{pc:get sql="SELECT * FROM jzk_page WHERE catid=18"}
+{loop $data $key $val}
+    {$val[content]}
+{/loop}
+{/pc}
+
+            </div>
+            <div class="bridgeCode"><span>{$WAP['wap_bottomcode']}</span></div>
+        </div>
+        <div class="FootderC">
+            <ul class="footbtn">
+                <li class="tel"><a href="tel:{$siteinfo['pc_phone']}" title="电话" target="_blank"><span>电话</span></a></li>
+                <li class="sms"><a href="sms:{$siteinfo['pc_mobile']}" title="短信" target="_blank"><span>短信</span></a></li>
+                <li class="qq"><a href="mqqwpa://im/chat?chat_type=wpa&uin={$siteinfo['pc_qq']}&version=1" title="QQ" target="_blank"><span>QQ</span></a></li>
+                <li class="map">
+{if !empty($WAP['wap_mapcode'])} <a href="{$WAP['wap_mapcode']}" title="地图" target="_blank"><span>地图</span></a></li>
+{else} <a href="/mobile/sitemap.html" title="地图" target="_blank"><span>地图</span></a></li>{/if} 
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

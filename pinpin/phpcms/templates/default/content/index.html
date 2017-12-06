@@ -1,0 +1,140 @@
+{template "content","header"}
+    <div class="layout-wrapper" id="movieReviews">
+        <div class="layout movieReviews">
+            <h3 class="movieReviews-title">大家拼片子</h3>
+            <div class="pin_movie">
+            {pc:content action="position" posid="2" catid="2" order="listorder DESC"}
+            {loop $data $aa}
+                <figure class="frame-room hot-item ">
+                    <div class="hot-picWrapper picHover">
+                        <a href="{$aa[url]}" title="{$aa[title]}" target="_blank" data-hrefexp="fr=homepc_rbdp_rbdp">
+                            <img src="{$aa[thumb]}" alt="{$aa[title]}" style="display: inline;width: 160px;">
+                            <span class="hot-score">7.2</span>
+                        </a>
+                    </div>
+                    <figcaption class="hot-description">
+                        <p class="title-hot">
+                            <a href="{$aa[url]}" title="{$aa[title]}" target="_blank">{$aa[title]}</a>
+                        </p>
+                        <p class="context-hot">{$aa[description]}</p>
+                    </figcaption>
+                </figure>
+            {/loop}
+            {/pc}
+                <div style="clear: both;"></div>
+            
+            </div>
+            <div class="buttonRadiusMore">
+                <a class="buttonRadiusMore-button" href="/html/list-2-1.html" target="_blank">查看更多</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout-wrapper" id="level">
+        <div class="layout">
+            <div class="frame news">
+                <div class="news-roomImportant frame-room">
+                    <div class="news-title"><span>收藏排行榜</span></div>
+                    <ul>
+                        <li>1</li>
+                        <li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li>
+                    </ul>
+                </div>
+                <div class="news-roomFast frame-room">
+                    <div class="news-title"><span>点赞排行榜</span></div>
+                    <ul>
+                        <li>2</li>
+                        <li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li>
+                    </ul>
+                    
+                </div>
+                <div class="news-roomDeep frame-room">
+                    <div class="news-title"><span>下载排行榜</span></div>
+                    <ul>
+                        <li>3</li>
+                        <li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li><li>3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout-wrapper" style="background: #fff;">
+        <div class="layout">
+            <div class="column-title">会员推荐</div>
+            <div class="frame">
+                {pc:content action="position" posid="1" catid="1" order="listorder desc"}
+                {loop $data $bb}
+                <figure class="frame-room hot-item">
+                    <div class="hot-picWrapper picHover">
+                        <a href="{$bb[url]}" title="{$bb[title]}" target="_blank">
+                            <img src="{$bb[thumb]}" alt="{$bb[title]}" style="display: inline;width: 160px;">
+                            <span class="hot-score">**</span>
+                            <span class="hot-flag hot-flag-free">最新更新</span>
+                        </a>
+                    </div>
+                    <figcaption class="hot-description">
+                        <p class="title-hot">
+                            <a href="{$bb[url]}" title="{$bb[title]}" target="_blank" style="color: #333;">{$bb[title]}</a>
+                        </p>
+                        <p class="context-hot">{$bb[description]}</p>
+                    </figcaption>
+                </figure>
+                {/loop}
+                {/pc}
+            </div>
+            <div class="buttonRadiusMore">
+                <a class="buttonRadiusMore-button" href="/html/list-1-1.html" target="_blank">查看更多</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout-wrapper" id="watchtell">
+        <div class="layout watchtell">
+            <h3 class="movieReviews-title">观后有话</h3>
+            <div class="movieReviews-conts clearfix" id="marquee">
+                <ul>
+                    {pc:get sql="select * from jzk_comment_data_1 where reply=0"}
+                    {loop $data $cc}
+                        {pc:get sql="select * from jzk_comment where commentid='$cc[commentid]'" return="data1"}
+                    <li>
+                        {if $cc[userid]>0}
+                        <div class="afterwatch_thumb"><img src="{get_memberavatar($cc[userid],1,45)}"></div>
+                        {else}
+                        <div class="afterwatch_thumb"><img src="{IMG_PATH}pinpin/noavatar_small.gif"></div>
+                        {/if}
+                        <div class="afterwatch_who">{$cc[username]}</div>
+                        <div class="afterwatch_text">{$cc[content]}</div>
+                        <div class="afterwatch_from">来自<a href="{$data1[0][url]}">《{$data1[0][title]}》</a>的评论</div>
+                    </li>
+                        {/pc}
+                    {/loop}
+                    {/pc}
+                </ul>
+                <script type="text/javascript">
+                    new Marquee("marquee","top",1,734,330,50,5000);
+                </script>
+            </div>
+            <div class="buttonRadiusMore">
+                <a class="buttonRadiusMore-button" href="/html/list-2-1.html" target="_blank">查看更多</a>
+            </div>
+        </div>
+        <div class="news-roomImportant dowm-room">
+            <div class="news-title"><span>下载排行榜</span></div>
+            <ul>
+                <li>4</li>
+                <li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li><li>4</li>
+            </ul>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+
+
+
+
+
+
+</div>
+
+{template "content","footer"}

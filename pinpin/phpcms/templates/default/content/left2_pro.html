@@ -1,0 +1,52 @@
+    
+            <div class="left">
+                <div class="left_1">
+                    <strong>产品分类</strong><span><a href="{$CATEGORYS[3][url]}" class="white">更多>></a></span>
+                </div>
+                <div class="left_2">
+                    <div id="masterdiv">
+{pc:content action="category" catid="3" num="20" siteid="$siteid" order="listorder ASC"}
+{loop $data $v}
+                        <div id="div{$v['catid']}" class="menudiv">
+                            <dl id="Usub{$v['catid']}" class="{if $catid==$v[catid] || $CAT[parentid]==$v[catid] || $CATEGORYS[$catid][parentid]==$v[catid]}menutitleSub{else}menutitle{/if}" onclick="SwitchMenu('{$v[catid]}')"><a href="{$v['url']}" title="{$v['catname']}">{$v['catname']}</a></dl>
+                            <ul id="sub{$v['catid']}" class="submenu" style="display:{if $catid==$v[catid] || $CAT[parentid]==$v[catid] || $CATEGORYS[$catid][parentid]==$v[catid]}block{else}none{/if}">
+{pc:content action="category" catid="$v[catid]" num="20" siteid="$siteid" order="listorder ASC"}
+{loop $data $r}
+            <li id="li{$v['catid']}_{$r[catid]}" class="checkstyle"><a href="{$r[url]}" title="{$r['catname']}">{$r['catname']}</a></li>
+{/loop}
+{/pc}
+                            </ul>
+                        </div>
+{/loop}
+{/pc}
+                    </div> 
+                </div>
+                <div class="left_1 mt10">
+                    <strong>推荐产品</strong><span><a href="{$CATEGORYS[3][url]}" class="white">更多>></a></span>
+                </div>
+                <div class="left_6">
+                    <div class="shucon3">
+{pc:content action="position" posid="12" order="id DESC" num="4"}
+{loop $data $v}
+                        <dl>
+                            <dt><a href='{$v[url]}' title='{$v[title]}' target="_blank"><img src='{getImgPath($v[thumb])}' onload="DrawImage(this,100,75)" alt='{$v[title]}' /></a></dt>
+                            <dd><a href='{$v[url]}' title='{$v[title]}' target="_blank" class="black">{str_cut($v[title],30,'...')}</a></dd>
+                        </dl>
+{/loop}
+{/pc}
+                    </div> 
+                </div>
+                <div class="left_1 mt10">
+                    <strong>联系我们</strong><span><a href="{$CATEGORYS[8][url]}" class="white">更多>></a></span>
+                </div>
+                <div class="left_4">
+                    <div class="divContactUs">
+{pc:get sql="SELECT * FROM jzk_page WHERE catid=13"}
+{loop $data $key $val}
+    {$val[content]}
+{/loop}
+{/pc}
+
+                    </div>
+                </div>
+            </div>

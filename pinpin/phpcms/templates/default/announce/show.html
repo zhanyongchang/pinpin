@@ -1,0 +1,27 @@
+{template 'content', 'header'}
+    <link href="{CSS_PATH}reset.css" rel="stylesheet" type="text/css" />
+    <div class="main">
+        <div class="indexCenter">
+            <div class="col-left">
+                <div class="crumbs"><a href="{APP_PATH}">首页</a><span> > </span>公告</div>
+                <div id="Article">
+                    <h3>{$title}<br /><span></span></h3>
+                    <div class="content">
+                        {$content}
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="box mt10">
+{pc:comment action="bang" cache="3600"}
+                    <ul class="itemli">
+{loop $data $r}
+                        <li><a href="{$r[url]}" title="{$r[title]}" target="_blank">{str_cut($r[title], 56, '...')}</a></li>
+{/loop}
+                    </ul>
+{/pc}
+                </div>
+            </div>
+        </div>
+    </div>
+{template 'content', 'footer'}

@@ -1,0 +1,72 @@
+{template "content","header"}
+<?php 
+    $temp="0";
+    switch($catid) {
+        case "24":
+            $temp="0";
+            break;
+    }
+?>
+    <input type="hidden" id="temp" value="{$temp}" />
+    <div class="main">
+        <div class="indexCenter">
+            <div class="indexLeft">
+                <input type="hidden" id="left_id" value="0" />
+                {template "content","left2"}
+            </div>
+            <div class="indexRight">
+                <div class="right_1"></div>
+                <div class="neiye_line2Video">
+                    <div class="right_2">
+                        <div class="right_3">
+                            当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)}
+                        </div>
+                    </div>
+                    <div class="case">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td align="center" colspan="2" height="40" class="caseTd1">
+                                    <h2>{$title}</h2><input id="Hidden1" type="hidden" value='{$id}' />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" colspan="2" class="caseTd2">
+                                    <span>发布时间：</span>{$inputtime}&nbsp;&nbsp;
+                                    <span>点击率：</span><span id="hits"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2" valign="top" class="text01 caseTd4">
+                                    详细说明
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2" class="caseTd5">
+                                    {$content}
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2" class="text01" style="padding-top:10px;">
+                                    <strong>上一篇：</strong><a href="{$previous_page[url]}" class="black">{str_cut($previous_page[title],120,'...')}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2" class="text01">
+                                    <strong>下一篇：</strong><a href="{$next_page[url]}" class="black">{str_cut($next_page[title],120,'...')}</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{JS_PATH}jquery.LoadImage.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $('.caseTd5 img').LoadImage(false, 600, 400,'{IMG_PATH}s_nopic.gif');    
+    })
+    </script>
+    <script type="text/javascript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+{template "content","footer"}

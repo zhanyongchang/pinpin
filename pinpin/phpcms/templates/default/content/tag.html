@@ -1,0 +1,21 @@
+﻿{template "content","header"}
+    <input type="hidden" id="temp" value="0" />
+    <div class="main">
+        <div class="indexCenter">
+            <div class="w990 clear">
+                <div class="sp-title"><h2>TAG标签</h2></div>
+                <div class="tags_list">
+                    <dl class="tbox">
+                        <dt><strong>相关标签</strong></dt>
+                        <dd>
+{loop $infos $info}
+	<a href="{APP_PATH}index.php?m=content&c=tag&a=lists&tag={urlencode($info['keyword'])}" target="_blank">{$info['keyword']}</a>
+{/loop}
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+{template 'content', 'footer'}

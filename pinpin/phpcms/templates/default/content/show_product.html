@@ -1,0 +1,220 @@
+{template "content","header"}
+<?php 
+    $temp="0";
+    switch($catid) {
+        case "3":
+            $temp="0";
+            break;
+    }
+?>
+    <link href="{CSS_PATH}jqzoom.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{JS_PATH}jqzoom.js"></script>
+    <input type="hidden" id="temp" value="{$temp}" />
+    <div class="main">
+        <div class="indexCenter">
+            <div class="indexLeft">
+                <input type="hidden" id="left_id" value="0" />
+                {template "content","left2_pro"}
+            </div>
+            <div class="indexRight">
+                <div class="right_1"></div>
+                <div class="neiye_line2Video">
+                    <div class="right_2">
+                        <div class="right_3">
+                            当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)}
+                        </div>
+                    </div>
+                    <div class="details_2">
+                        <div class="details_2_1">
+                            <h2>{$title}</h2><input id="Hidden1" type="hidden" value='{$id}' />
+                        </div>
+                        <div class="clear"></div>
+                        <div class="details_3">
+                            <div class="details_3_1">
+                                <div class="product1">
+                                    <div class="product1_1">
+                                        <script type="text/javascript">
+                                        var imgUrl = new Array();
+	var imgLink = new Array();
+	var imgText = new Array();
+	imgUrl[1] = '{getImgPath($thumb)}';
+	imgLink[1] = '{getImgPath($thumb)}';
+	imgText[1] = '{$title}';
+                                        var adNum=1;
+                                        var num_pic=imgUrl.length-1;
+                                        function goUrl(){
+                                            window.open(imgLink[adNum],'_blank');
+                                        }
+                                        </script>
+                                        <script type="text/javascript">
+                                            document.write('<div id="spec-n1" class="jqzoom">');
+                                            document.write('<img src="'+imgUrl[1]+'" jqimg="'+imgUrl[1]+'" name="imgInit" id="imgInit" class="imgInit" style="filter: revealTrans(duration=2,transition=6)">');
+                                            document.write('</div>');
+                                            document.images.imgInit.src=imgUrl[1];
+                                        </script>
+                                        <script type="text/javascript">
+                                        $(function(){			
+                                           $(".jqzoom").jqueryzoom({
+		                                        xzoom:318,
+		                                        yzoom:318,
+		                                        offset:19,
+		                                        position:"right",
+		                                        preload:1,
+		                                        lens:1
+	                                        });		
+	                                        $("#spec-n1").click(function() {
+                                                window.open(imgUrl[1]);
+                                            });			
+                                        })
+                                        </script>
+                                    </div>
+                                </div>
+                                <div class="product2">
+                                    <div class="shorttitle">
+                                        <span>产品信息</span>
+                                    </div>
+                                    <div class="shortdesc">
+                                        <strong>产品类别：</strong><span>{$CATEGORYS[$catid][catname]}</span>
+                                    </div>
+                                    <div class="shortdesc">
+                                        <strong>关键词：</strong><span>{$SEO['keyword']}</span>
+                                    </div>
+                                    <div class="shortdesc">
+                                        <strong>点击率：</strong><span id="hits"></span>
+                                    </div>
+                                    <div class="shortdesc">
+                                        <strong>发布时间：</strong><span>{$inputtime}</span>
+                                    </div>
+                                    <div class="pd_hotline">
+                                        <strong>全国服务热线：</strong><span>{$siteinfo['pc_phone']}</span>
+                                    </div>
+                                    <div class="propar">
+                                        <a href="tencent://message/?V=1&Uin={$siteinfo['pc_qq']}&Site=在线客服&Menu=yes">立即咨询</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details_1_3">
+                                <div class="details_1_4">产品详情</div>
+                                <div class="details_1_5">
+                                    {$content}
+
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="details_1_6 b">
+                            <p><strong>上一篇：</strong><a href="{$previous_page[url]}">{str_cut($previous_page[title],120,'...')}</a></p>
+                            <p><strong>下一篇：</strong><a href="{$next_page[url]}">{str_cut($next_page[title],120,'...')}</a></p>
+                            <div class="gjazP">
+                                <span>本文Tags标签：</span>
+{loop $keywords $keyword}
+    <a href="{APP_PATH}index.php?m=content&c=tag&siteid={$siteid}&tag={urlencode($keyword)}" target="_blank">{$keyword}</a>
+{/loop}
+                            </div>
+                        </div>
+                        <div class="details_1_7">
+                            <div class="details_1_7_1">
+                                <div class="details_1_7_2">
+                                    相关产品
+                                </div>
+                            </div>
+                            <div class="details_1_8">
+                                <div id="LPdemo">
+                                    <div id="LPindemo">
+                                        <div id="LPdemo1">
+{pc:get sql="SELECT * FROM jzk_news WHERE catid=$catid AND id<>$id ORDER BY listorder DESC,id DESC" num="6" return="data"}
+{loop $data $r}
+    <dl>
+        <dt><a href='{$r[url]}' title='{$r[title]}'><img src='{getImgPath($r[thumb])}' onload="DrawImage(this,120,90)" alt='{$r[title]}' /></a></dt>
+        <dd><a href='{$r[url]}' title='{$r[title]}' class="black">{str_cut($r[title],30,'...')}</a></dd>
+    </dl>
+{/loop}
+{/pc}
+                                        </div>
+                                        <div id="LPdemo2"></div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript" src="{JS_PATH}marquee_leftP.js"></script>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="p_online">
+                            <strong>采购：</strong><strong class="pc_title">{$title}</strong>
+                            <form id="form1" name="form1" method="post" action="{APP_PATH}index.php?m=guestbook&c=index&a=register&siteid={$siteid}" onSubmit="return CheckBuyForm();">
+                            <ul>
+                                <li class="li01">
+                                    <span><em class="red_x">*</em>联系人：</span><input type="text" id="txtUserName" class="inp1" name="name" maxlength="20" />
+                                </li>
+                                <li class="li02">
+                                    <span><em class="red_x">*</em>手机：</span><input type="text" id="txtMobile" class="inp2" name="mobile" maxlength="20" />
+                                </li>
+                                <li class="li03">
+                                    <span>公司名称：</span><input type="text" id="txtCompany" class="inp4" name="company" maxlength="20" />
+                                </li>
+                                <li class="li03">
+                                    <span>邮箱：</span><input type="text" id="txtEmail" class="inp3" name="email" maxlength="50" />
+                                </li>
+                                <li style="display:none;" class="li03">
+                                    <span>电话：</span><input type="text" id="txtPhone" class="inp2" name="tel" maxlength="20" />
+                                </li>
+                                <li style="display:none;" class="li03">
+                                    <span>地址：</span>
+                                    <input type="text" id="txtAddress" class="inp4" name="address" maxlength="50" />
+                                </li>
+                                <li class="li04">
+                                    <span><em class="red_x">*</em>采购意向：</span><textarea id="txtContent" class="inp5" rows="8" cols="50" name="introduce" /></textarea>
+                                </li>
+                                <li class="li04">
+                                    <span><em class="red_x">*</em>验证码：</span><input type="text" name="code" size="5" maxlength="4" class="inp6" id="MChkCode" /> {form::checkcode('code_img','4','14',120,28)}       
+                                </li>
+                                <li class="li05">
+                                    <input name="title" type="hidden" value="采购产品：{$title}" /><input type="hidden" id="typeid" name="typeid" value="54" />
+                                    <input name="dosubmit" type="submit" class="btn1" value="提 交" /> <input name="reset" type="reset" class="btn2" value="重 填" />
+                                </li>
+                            </ul>
+                            </form>
+                            <script type="text/javascript">
+                                function CheckBuyForm(){
+                                    if(document.getElementById("txtUserName").value==""){
+                                        alert('请填写您的真实姓名！');
+                                        document.getElementById("txtUserName").focus();
+                                        return false;
+                                    }
+                                    if(document.getElementById("txtMobile").value==''){
+                                        alert('请填写您的手机号码！');
+                                        document.getElementById("txtMobile").focus();
+                                        return false;
+                                    }
+                                    var mobile = document.getElementById("txtMobile").value;
+                                    var pattern = /^1\d{10}/;
+                                    flag = pattern.test(mobile);
+                                    if(!flag){
+                                        alert("手机号码格式不正确!");
+                                        document.getElementById("txtMobile").focus();
+                                        return false;
+                                    }
+                                    if(document.getElementById("txtContent").value==''){
+                                        alert('请填写采购意向描述！');
+                                        document.getElementById("txtContent").focus();
+                                        return false;
+                                    }
+                                    if(document.getElementById("MChkCode").value==''){
+                                        alert('请输入验证码！');
+                                        document.getElementById("MChkCode").focus();
+                                        return false;
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{JS_PATH}jquery.LoadImage.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $('.details_1_5 img').LoadImage(false, 600, 400,'{IMG_PATH}s_nopic.gif');    
+    })
+    </script>
+    <script type="text/javascript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+{template "content","footer"}

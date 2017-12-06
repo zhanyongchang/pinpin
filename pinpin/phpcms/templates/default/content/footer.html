@@ -1,0 +1,17 @@
+<footer class="footer_my">
+    <div class="footer-inner">
+        <div style="width: 120px;padding: 20px 0;"><img src="{$siteinfo[pc_logo]}" style="width: 100%;"></div>
+        <div class="sp"></div>
+        <div class="footer-inner-links">
+        {pc:link action="type_list" siteid="$siteid" order="listorder DESC" return="dat"}
+        {loop $dat $v}
+        <a href="{$v[url]}" target="_blank" data-hrefexp="fr=homepc_bottom" style="color: #fff;">{$v[name]}</a><span>|</span>
+        {/loop}
+        {/pc}
+
+        </div>
+
+    </div>
+</footer>
+</body>
+</html>

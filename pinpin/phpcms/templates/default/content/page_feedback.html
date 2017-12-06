@@ -1,0 +1,121 @@
+{template "content","header"}
+	<input type="hidden" id="temp" value="0" />
+    <div class="main">
+        <div class="indexCenter">
+            <div class="indexLeft">
+                <input type="hidden" id="left_id" value="0" />
+                {template "content","left2"}
+            </div>
+            <div class="indexRight">
+                <div class="right_1"></div>
+                <div class="neiye_line2Video">
+                    <div class="right_2">
+                        <div class="right_3">
+                            当前位置：<a href="{siteurl($siteid)}">首页</a><span> > </span> <a href="{$CATEGORYS[$catid][url]}">{$title}</a>
+                        </div>
+                    </div>
+                    <div class="Company">
+<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<form action="{APP_PATH}index.php?m=guestbook&c=index&a=register&siteid={$siteid}" method="post" name="myform" id="myform">
+	<table class="submitTable" border="0" cellspacing="0" cellpadding="0" width="90%" align="center">
+		<tbody>
+			<tr>
+				<td bgcolor="#f4f4f4" colspan="2" align="left">
+					<span style="padding-left:10px;color:#ff0000;font-size:14px;">打*的为必填项！</span> 
+				</td>
+			</tr>
+			<tr>
+				<td width="12%" align="right">
+					留言主题：
+				</td>
+				<td align="left">
+					<input type="text" id="x_Title" class="in" name="title" maxlength="50" size="30" /> <span class="red">*</span> 
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					您的姓名：
+				</td>
+				<td align="left">
+					<input type="text" id="x_UserName" class="in" name="name" maxlength="20" size="30" /> <span class="red">*</span> 
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					企业名称：
+				</td>
+				<td align="left">
+					<input type="text" id="x_CompanyName" class="in" name="company" maxlength="50" size="30" /> 
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					手机号码：
+				</td>
+				<td align="left">
+					<input type="text" id="x_Mobile" class="in" name="mobile" maxlength="11" /> <span class="red">*</span> 
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					电子邮件：
+				</td>
+				<td align="left">
+					<input type="text" id="x_Email" class="in" name="email" maxlength="50" size="30" /> 
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					联系地址：
+				</td>
+				<td align="left">
+					<input type="text" id="x_Address" class="in" name="address" maxlength="50" size="50" /> 
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					留言内容：
+				</td>
+				<td align="left">
+					<textarea style="width:90%;height:120px;" id="x_Content" class="in" cols="50" rows="5" name="introduce"></textarea>&nbsp;<span class="red">*</span> 
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					验证码：
+				</td>
+				<td align="left">
+                    <input name="code" type="text" id="code" maxlength="4" size="5" class="incode" /> {form::checkcode('code_img','4','14',100,26)}
+				</td>
+			</tr>
+			<tr>
+				<td align="right">&nbsp;
+					
+				</td>
+				<td height="45" align="left">
+					<input type="submit" id="dosubmit" class="button_submit3" name="dosubmit" value=" 完成并提交 " /><input type="reset" class="button_submit4" name="reset" value="清空重写" /><input type="hidden" id="typeid" name="typeid" value="53" /> 
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+<script type="text/javascript">
+<!--
+	$(function(){
+	$.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+	$("#x_Title").formValidator({onshow:"请输入留言主题",onfocus:"请输入留言主题"}).inputValidator({min:1,max:999,onerror:"留言主题不能为空"});
+	$("#x_UserName").formValidator({onshow:"请输入您的姓名",onfocus:"请输入您的姓名"}).inputValidator({min:1,max:999,onerror:"您的姓名不能为空"});
+	$("#x_Mobile").formValidator({onshow:"请输入您的手机号码",onfocus:"请输入您的手机号码"}).inputValidator({min:1,max:999,onerror:"手机号码不能为空"}).regexValidator({regexp: "^(1)[0-9]{10}$", onerror: "手机号码格式不正确"});
+	$("#x_Content").formValidator({onshow:"请输入留言内容",onfocus:"请输入留言内容"}).inputValidator({min:1,max:999,onerror:"留言内容不能为空"});
+	$("#code").formValidator({onshow:"请输入验证码",onfocus:"验证码不能为空",oncorrect:"OK"}).inputValidator({min:1,max:999,onerror:"验证码不能为空"});
+	})
+//-->
+</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{template "content","footer"}

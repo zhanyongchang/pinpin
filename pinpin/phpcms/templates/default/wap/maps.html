@@ -1,0 +1,24 @@
+{template "wap","header"}
+    <div class="About"></div>
+    <div class="wrap">
+        <div class="wrap_1">
+            <div class="adds" id="hd">{$WAP['sitename']} - 导航</div>
+            <div class="cts">
+                <a href="{page_url(1)}" target="_blank">[关于我们]</a><br />
+                
+{php $i=1}
+{loop subtype(0,$siteid) $s}
+                <a href="{list_url($s[typeid])}" target="_blank">[{$s[typename]}]</a>
+{loop subtype($s[typeid],$siteid) $r}
+                <a href="{list_url($r[typeid])}" target="_blank">{$r[typename]}</a>
+{php $i++}
+{/loop}
+                <br />
+{/loop}
+                
+                <a href="{page_url(7)}" target="_blank">[在线留言]</a><br />
+                <a href="{page_url(8)}" target="_blank">[联系我们]</a><br />
+            </div>
+        </div>
+    </div>
+{template "wap","footer"}

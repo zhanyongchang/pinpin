@@ -1,0 +1,8 @@
+ErrorDocument 404 /statics/404.html
+RewriteEngine On
+RewriteRule ^(.*)html/list-([0-9]+)-([0-9]+).html$                $1/index\.php\?m=content&c=index&a=lists&catid=$2&page=$3
+RewriteRule ^(.*)html/show-([0-9]+)-([0-9]+)-([0-9]+).html$       $1/index\.php\?m=content&c=index&a=show&catid=$2&id=$3&page=$4
+RewriteRule ^mobile/page-([0-9]+).html$                           index.php?m=wap&siteid=1&a=page&catid=$1
+RewriteRule ^mobile/list-([0-9]+).html$                           index.php?m=wap&siteid=1&a=lists&typeid=$1
+RewriteRule ^mobile/list-([0-9]+)-([0-9]+).html$                  index.php?m=wap&siteid=1&a=lists&typeid=$1&page=$2
+RewriteRule ^mobile/show-([0-9]+)-([0-9]+)-([0-9]+).html$         index.php?m=wap&siteid=1&a=show&catid=$1&typeid=$2&id=$3

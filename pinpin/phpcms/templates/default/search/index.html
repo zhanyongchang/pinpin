@@ -1,0 +1,47 @@
+{template 'content', 'header'}
+    <div class="main">
+        <div class="indexCenter">
+            <div class="indexLeft">
+                <input type="hidden" id="left_id" value="0" />
+                {template "content","left2"}
+            </div>
+            <div class="indexRight">
+                <div class="right_1"></div>
+                <div class="neiye_line2Video">
+                    <div class="right_2">
+                        <div class="right_3">
+                            当前位置：<a href="{APP_PATH}">首页</a><span> > </span> <a href="javascript:;">搜索结果</a>
+                        </div>
+                    </div>
+                    <div class="sr_lists">
+                        <div class="text02">
+                            <strong class="hui666">当前搜索关键字：<span class="red">{$search_q}</span></strong>，<span>获得约 {$totalnums} 条结果</span>
+                        </div>
+                        <ul class="c">
+{loop $datatest $i $r}
+                            <li class="wrap">
+                                <div>
+                                    {if $r['thumb']}<a href="{$r[url]}" target="_blank"><img src="{getImgPath($r[thumb])}" width="60" height="60" /></a>
+                                    {else}<a href="javascript:;"><img src="{getImgPath('')}" width="60" height="60" /></a>
+                                    {/if}
+                                    
+                                    <h5><a href="{$r[url]}" target="_blank">{$r[title]}</a>{if $r['posids']}<img src="{IMG_PATH}icon/small_elite.gif" />{/if}</h5>
+                                    <p>{$r[description]}</p>
+                                </div>
+                                <div class="adds">发布时间：{format::date($r[inputtime], 1)}</div>
+                            </li>
+{/loop}
+
+                        </ul>
+                    </div>
+                    <div class="pagesDiv" id="pages">
+                        <div class="pagination">
+                            {$pages}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{template 'content', 'footer'}

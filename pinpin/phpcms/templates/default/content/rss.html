@@ -1,0 +1,23 @@
+{template "content","header_min"}
+    <div class="w990 clear mt10">
+        <div class="sp-title">
+            <h2>RSS地图</h2><span class="more"><a href="{siteurl($siteid)}">返回首页</a></span>
+        </div>
+        <div class="linkbox">
+{pc:get sql="SELECT * FROM jzk_category WHERE parentid=0 AND type=0 ORDER BY listorder ASC" num="0" return="data"}
+{loop $data $r}
+            <div class="linkbox">
+                <h3><a href='{APP_PATH}index.php?m=content&c=rss&rssid={$r[catid]}'>{$r[catname]}</a></h3>
+                <ul class="f6">		
+    {loop subcat($r[catid],0,0,$this->siteid) $v}
+                  <li><a href="{APP_PATH}index.php?m=content&c=rss&rssid={$v[catid]}">{$v[catname]}</a></li>
+    {/loop}
+                
+                </ul>
+            </div>
+{/loop}	
+{/pc}
+
+        </div>
+    </div>
+{template "content","footer"}

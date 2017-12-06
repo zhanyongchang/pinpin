@@ -1,0 +1,26 @@
+﻿{template "wap","header"}
+    <div class="About"></div>
+    <div class="ContentA3">
+        <div class="ContentA3a"><a href="javascript:window.history.go(-1)"></a></div>
+        <div class="ContentA3b">{wap_typename($typeid)}</div>
+    </div>
+    <div class="AboutContent">
+        <div class="prolist2">              
+{pc:content action="lists" catid="$catid" num="12" order="listorder DESC,id DESC" page="$page"} 
+            <ul>
+{loop $data $r}
+                <li><div><a href='{show_url($r[catid],$r[id],$typeid)}' title="{$r['title']}" class="proimg"><img src='{getImgPath($r[thumb])}' alt="{$r['title']}" /></a><a href='{show_url($r[catid],$r[id],$typeid)}' title="{$r['title']}" class="protxt">{str_cut($r['title'],60,'...')}</a></div></li>
+{/loop}
+            </ul>
+{/pc}
+        </div>
+        <div class="clear"></div>
+        <div class="pagesDiv" id="pages">
+            <div class="pagination">
+                {$pages}
+
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+{template "wap","footer"}
